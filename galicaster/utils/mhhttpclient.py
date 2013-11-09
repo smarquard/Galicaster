@@ -19,6 +19,7 @@ import socket
 from StringIO import StringIO
 import pycurl
 from collections import OrderedDict
+from galicaster import __version__
 
 INIT_ENDPOINT = '/welcome.html'
 ME_ENDPOINT = '/info/me.json'
@@ -75,7 +76,7 @@ class MHHTTPClient(object):
         c.setopt(pycurl.HTTPAUTH, pycurl.HTTPAUTH_DIGEST)
         c.setopt(pycurl.USERPWD, self.user + ':' + self.password)
         c.setopt(pycurl.HTTPHEADER, ['X-Requested-Auth: Digest'])
-        c.setopt(pycurl.USERAGENT, 'Galicaster')
+        c.setopt(pycurl.USERAGENT, 'Galicaster ' + __version__)
         if (method == 'POST'):
             if urlencode:
                 c.setopt(pycurl.POST, 1) 
